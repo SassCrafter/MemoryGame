@@ -10,7 +10,7 @@ $main-font: "Roboto", sans-serif;
 $secondary-font: 'Courgette', cursive;
 
 
-// Reset
+/* Reset*/
 *,
 *::before,
 *::after {
@@ -60,7 +60,7 @@ img {
         letter-spacing: .2rem;
     }
 
-    &__time {
+    &__moves {
         font-size: 2.5rem;
         margin-bottom: 2rem;
     }
@@ -80,7 +80,8 @@ img {
         max-width: 11rem;
         height: 15rem;
         margin: 1rem;
-        perspective: 100rem;
+        -webkit-perspective: 100rem;
+                perspective: 100rem;
         position: relative;
         border-radius: .5rem;
         cursor: pointer;
@@ -94,16 +95,19 @@ img {
             position: absolute;
             left: 0;
             top: 0;
-            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+                    backface-visibility: hidden;
             overflow: hidden;
             box-shadow: 0 1.5rem 4rem rgba(black, 0.4);
+            transition: -webkit-transform 500ms ease;
             transition: transform 500ms ease;
+            transition: transform 500ms ease, -webkit-transform 500ms ease;
             display: flex;
             align-items: center;
             justify-content: center;
 
             &--front {
-                //background: $grey;
+                /*background: $grey;*/
                 background-color:$grey;
                 background-image: 
                     repeating-linear-gradient(
@@ -124,7 +128,8 @@ img {
 
             &--back {
                 background: $white;
-                transform: rotateY(180deg);
+                -webkit-transform: rotateY(180deg);
+                        transform: rotateY(180deg);
             }
         }
 
@@ -135,10 +140,12 @@ img {
 
         &.active {
             .game__card-side--front {
-                transform: rotateY(-180deg);
+                -webkit-transform: rotateY(-180deg);
+                        transform: rotateY(-180deg);
             }
             .game__card-side--back {
-                transform: rotateY(0);
+                -webkit-transform: rotateY(0);
+                        transform: rotateY(0);
             }
         }
     }
@@ -156,10 +163,13 @@ img {
         border-radius: .5rem;
         margin-bottom: 2rem;
         cursor: pointer;
+        transition: -webkit-transform 300ms ease;
         transition: transform 300ms ease;
+        transition: transform 300ms ease, -webkit-transform 300ms ease;
 
         &:hover {
-            transform: scaleX(1.1);
+            -webkit-transform: scaleX(1.1);
+                    transform: scaleX(1.1);
         }
     }
 }

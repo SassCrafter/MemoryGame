@@ -55,7 +55,8 @@ class MemoryGame {
         this.shuffledIcons = this.cardsObjs.sort(() => Math.random() - 0.5);
 
         this.count = 0;
-        this.timerCount = 0;
+        this.movesEl = document.querySelector('.game__moves');
+        this.moves = 0;
 
         this.correctGueses = [];
 
@@ -110,8 +111,10 @@ class MemoryGame {
                 this.count++;
                 if (this.count < 3) {
                     card.classList.add('active');
+                    card.style = 'pointer-events: none';
                     cardsArr.push(card);
                     if (cardsArr.length === 2) {
+                        this.updateMoves();
                         this.checkTwoCards(cardsArr);
                         cardsArr = [];
                     }
@@ -125,7 +128,7 @@ class MemoryGame {
         const cardOne = cards[0];
         const cardTwo = cards[1];
 
-        if (cardOne.dataset.icon === cardTwo.dataset.icon) {
+        if (cardOne.dataset.icon === cardTwo.dataset.icon && cardOne !== cardTwo) {
             this.correctGueses.push(cardOne);
             this.correctGueses.push(cardTwo);
             setTimeout( () => {
@@ -134,19 +137,49 @@ class MemoryGame {
             }, 500);
             if (this.correctGueses.length === this.cardsObjs.length) {
                 this.removeElements();
+                this.showWinMessage();
             }
         } else {
             setTimeout( () => {
-                cards.forEach(card => {card.classList.remove('active')});
+                cards.forEach(card => {
+                    card.classList.remove('active');
+                    card.style = 'pointer-events: initial'
+                });
             }, 500);
         }
         this.count = 0;
     }
 
+    updateMoves() {
+        this.moves++;
+        this.movesEl.innerText = `Moves: ${this.moves}`;
+    }
+
+
+    showWinMessage() {
+        const game = document.querySelector('.game');
+        const messageContainer = document.createElement('div');
+        const messageHeadingEl = document.createElement('h3');
+        const message = `Yeah, you've won, it took ${this.moves} moves`;
+
+        messageContainer.classList.add('game__message-container');
+        messageHeadingEl.classList.add('game__message-text');
+        messageHeadingEl.innerText = message;
+
+        messageContainer.appendChild(messageHeadingEl);
+        game.appendChild(messageContainer);
+    }
+
 
     reset() {
         this.shuffledIcons = this.cardsObjs.sort(() => Math.random() - 0.5);
-        this.count = 0;
+
+        const messageContainer = document.querySelector('.game__message-container');
+        if (messageContainer) messageContainer.remove();
+
+        this.moves = 0;
+        this.movesEl.innerText = 'Moves: 0';
+
         this.removeElements();
         this.createElements();
         this.showCard();
