@@ -127,7 +127,7 @@ class MemoryGame {
     checkTwoCards(cards) {
         const cardOne = cards[0];
         const cardTwo = cards[1];
-
+        console.log('check');
         if (cardOne.dataset.icon === cardTwo.dataset.icon && cardOne !== cardTwo) {
             this.correctGueses.push(cardOne);
             this.correctGueses.push(cardTwo);
@@ -136,6 +136,8 @@ class MemoryGame {
                 cardTwo.style = "opacity: 0; visibiltiy: hidden; pointer-events: none";
             }, 500);
             if (this.correctGueses.length === this.cardsObjs.length) {
+                console.log('win');
+                this.correctGueses = [];
                 this.removeElements();
                 this.showWinMessage();
             }

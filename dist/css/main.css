@@ -1,4 +1,5 @@
 /* Variabes */
+/* Reset*/
 *,
 *::before,
 *::after {
@@ -25,7 +26,7 @@ img {
 
 .game {
   width: 100%;
-  max-width: 55rem;
+  max-width: 70rem;
   margin: 0 auto;
   padding: 4rem 1rem;
   text-align: center;
@@ -36,7 +37,7 @@ img {
   font-family: "Courgette", cursive;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: .3rem;
+  letter-spacing: 0.3rem;
   line-height: 1.2;
   margin-bottom: 1rem;
 }
@@ -45,12 +46,17 @@ img {
   font-size: 2rem;
   font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: .2rem;
+  letter-spacing: 0.2rem;
 }
 
 .game__moves {
   font-size: 2.5rem;
   margin-bottom: 2rem;
+}
+
+.game__message-text {
+  font-size: 2.5rem;
+  font-weight: 400;
 }
 
 .game__cards {
@@ -67,12 +73,16 @@ img {
   max-width: 11rem;
   height: 15rem;
   margin: 1rem;
-  -webkit-perspective: 100rem;
-          perspective: 100rem;
+  perspective: 100rem;
   position: relative;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   cursor: pointer;
   transition: all 250ms linear;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.game__card:hover {
+  transform: scale(1.1);
 }
 
 .game__card-side {
@@ -82,27 +92,24 @@ img {
   position: absolute;
   left: 0;
   top: 0;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   overflow: hidden;
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
-  transition: -webkit-transform 500ms ease;
   transition: transform 500ms ease;
-  transition: transform 500ms ease, -webkit-transform 500ms ease;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .game__card-side--front {
+  /*background: $grey;*/
   background-color: #d3d0d0;
   background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) 20px, transparent 0px, transparent 50px), repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) 20px, transparent 0px, transparent 50px);
 }
 
 .game__card-side--back {
   background: #fff;
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 .game__card-icon {
@@ -111,13 +118,11 @@ img {
 }
 
 .game__card.active .game__card-side--front {
-  -webkit-transform: rotateY(-180deg);
-          transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
 }
 
 .game__card.active .game__card-side--back {
-  -webkit-transform: rotateY(0);
-          transform: rotateY(0);
+  transform: rotateY(0);
 }
 
 .game__restart {
@@ -129,15 +134,32 @@ img {
   font-size: 1.8rem;
   padding: 1.5rem 2.5rem;
   text-transform: capitalize;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   margin-bottom: 2rem;
   cursor: pointer;
-  transition: -webkit-transform 300ms ease;
   transition: transform 300ms ease;
-  transition: transform 300ms ease, -webkit-transform 300ms ease;
 }
 
 .game__restart:hover {
-  -webkit-transform: scaleX(1.1);
-          transform: scaleX(1.1);
+  transform: scaleX(1.1);
+}
+
+@media screen and (min-width: 768px) {
+  .game__title {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+  }
+  .game__subtitle {
+    font-size: 3rem;
+  }
+  .game__moves {
+    font-size: 3.5rem;
+    margin-bottom: 4rem;
+  }
+  .game__restart {
+    font-size: 2rem;
+  }
+  .game__message-text {
+    font-size: 3.5rem;
+  }
 }
