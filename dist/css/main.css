@@ -73,16 +73,18 @@ img {
   max-width: 11rem;
   height: 15rem;
   margin: 1rem;
-  perspective: 100rem;
+  -webkit-perspective: 100rem;
+          perspective: 100rem;
   position: relative;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: all 250ms linear;
-  -webkit-tap-highlight-color: transparent;
+  
 }
 
 .game__card:hover {
-  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .game__card-side {
@@ -92,10 +94,13 @@ img {
   position: absolute;
   left: 0;
   top: 0;
-  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
   overflow: hidden;
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+  transition: -webkit-transform 500ms ease;
   transition: transform 500ms ease;
+  transition: transform 500ms ease, -webkit-transform 500ms ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,7 +114,8 @@ img {
 
 .game__card-side--back {
   background: #fff;
-  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
 }
 
 .game__card-icon {
@@ -118,11 +124,13 @@ img {
 }
 
 .game__card.active .game__card-side--front {
-  transform: rotateY(-180deg);
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
 }
 
 .game__card.active .game__card-side--back {
-  transform: rotateY(0);
+  -webkit-transform: rotateY(0);
+          transform: rotateY(0);
 }
 
 .game__restart {
@@ -137,11 +145,14 @@ img {
   border-radius: 0.5rem;
   margin-bottom: 2rem;
   cursor: pointer;
+  transition: -webkit-transform 300ms ease;
   transition: transform 300ms ease;
+  transition: transform 300ms ease, -webkit-transform 300ms ease;
 }
 
 .game__restart:hover {
-  transform: scaleX(1.1);
+  -webkit-transform: scaleX(1.1);
+          transform: scaleX(1.1);
 }
 
 @media screen and (min-width: 768px) {
